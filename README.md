@@ -1,2 +1,2 @@
 # test-site
-learning Web Dev from Mozilla 
+Learning Web Dev from Mozilla 
