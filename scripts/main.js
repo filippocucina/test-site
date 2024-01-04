@@ -1,11 +1,12 @@
-const MYIMAGE = document.querySelector("img");
+const myImage = document.querySelector("img");
 
-MYIMAGE.onclick = () => {
-	const MYSRC = MYIMAGE.getAttribute("src");
-	
-	if (MYSRC === "images/lambda-png-9.png") {
-		MYIMAGE.setAtrribute("src", "images/turing-machine.png");
-	} else {
-		MYIMAGE.setAttribute("src", "images/lambda-png-9.png");
-	}
+myImage.onclick = () => {
+  const mySrc = myImage.getAttribute("src");
+
+  if (mySrc === "images/firefox-icon.png") {
+    myImage.setAttribute("src", "images/firefox2.png");
+  } else {
+    myImage.setAttribute("src", "images/firefox-icon.png");
+  }
 };
+
