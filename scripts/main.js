@@ -1,12 +1,11 @@
-const myHeading = document.querySelector("h1");
-myHeading.textContent = "Computer Science";
+const MYIMAGE = document.querySelector("img");
 
-/* document.querySelector("html").addEventListener("click", function() {
-	alert("Ouch! Stop poking me!!");
-});  */
-
-document.querySelector("html").addEventListener("click", () => {
-	alert("Ouch! Stop poking me!!");
-});  
-
-
+MYIMAGE.onclick = () => {
+	const MYSRC = MYIMAGE.getAttribute("src");
+	
+	if (MYSRC === "images/lambda-png-9.png") {
+		MYIMAGE.setAtrribute("src", "images/turing-machine.png");
+	} else {
+		MYIMAGE.setAttribute("src", "images/lambda-png-9.png");
+	}
+};
