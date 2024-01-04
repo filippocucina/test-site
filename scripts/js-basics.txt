@@ -57,3 +57,51 @@ Note: Both of the features you used in this exercise are parts of the Document O
 - Strict Equality: This performs a test to see if two vaues are equal and of the same data type. It returns a true/false (Boolean) result. The symbol is " === " .
 
 /*  ssh-add -L nos ayuda a determinar cual llave ssh eta en ejecucion y tenga la clave cargada  */
+
+--- Functions ---
+
+Functions are a way of packaging functionality that you wish to reuse. It's possible to define a body of code as a function that executes when you call the function name in your code. This is a good alternative to repeatedly writing the same code. You have already seen some uses of functions. For example:
+
+let myVariable = document.querySelector("h1");
+
+alert("hello!");
+
+These functions, document.querySelector and alert, are built into the browser.
+
+If you see something which looks like a variable name, but it's followed by parentheses— () —it is likely a function. Functions often take arguments: bits of data they need to do their job. Arguments go inside the parentheses, separated by commas if there is more than one argument.
+
+For example, the alert() function makes a pop-up box appear inside the browser window, but we need to give it a string as an argument to tell the function what message to display.
+
+You can also define your own functions. In the next example, we create a simple function which takes two numbers as arguments and multiplies them:
+
+function multiply(num1, num2) {
+  let result = num1 * num2;
+  return result;
+}
+
+multiply(4, 7);
+multiply(20, 20);
+multiply(0.5, 3);
+
+
+--- Events ---
+
+Real interactivity on a website requires event handlers. These are code structures that listen for activity in the browser, and run code in response. The most obvious example is handling the click event, which is fired by the browser when you click on something with your mouse. To demonstrate this, enter the following into your console, then click on the current webpage:
+
+document.querySelector("html").addEventListener("click", function () {
+  alert("Ouch! Stop poking me!");
+});
+
+
+There are a number of ways to attach an event handler to an element. Here we select the <html> element. We then call its addEventListener() function, passing in the name of the event to listen to ('click') and a function to run when the event happens.
+
+--- Anonymous Function ---
+
+The function we just passed to addEventListener() here is called an anonymous function, because it doesn't have a name. There's an alternative way of writing anonymous functions, which we call an arrow function. An arrow function uses () => instead of function ():
+
+document.querySelector("html").addEventListener("click", () => {
+  alert("Ouch! Stop poking me!");
+});
+
+
+
