@@ -130,3 +130,64 @@ myImage.onclick = () => {
   }
 };
 
+
+--- Adding a personalized welcome message ---
+
+Next, let's change the page title to a personalized welcome message when the user first visits the site. This welcome message will persist. Should the user leave the site and return later, we will save the message using the Web Storage API. We will also include an option to change the user, and therefore, the welcome message.
+
+In index.html, add the following line just before the <script> element:
+
+<button>Change user</button>
+
+In main.js, place the following code at the bottom of the file, exactly as it is written. This takes references to the new button and the heading, storing each inside variables:
+
+let myButton = document.querySelector("button");
+let myHeading = document.querySelector("h1");
+
+Add the following function to set the personalized greeting. This won't do anything yet, but this will change soon.
+
+function setUserName() {
+  const myName = prompt("Please enter your name.");
+  localStorage.setItem("name", myName);
+  myHeading.textContent = `Mozilla is cool, ${myName}`;
+}
+
+
+The setUserName() function contains a prompt() function, which displays a dialog box, similar to alert(). This prompt() function does more than alert(), asking the user to enter data, and storing it in a variable after the user clicks OK. In this case, we are asking the user to enter a name. Next, the code calls on an API localStorage, which allows us to store data in the browser and retrieve it later. We use localStorage's setItem() function to create and store a data item called 'name', setting its value to the myName variable which contains the user's entry for the name. Finally, we set the textContent of the heading to a string, plus the user's newly stored name.
+
+Add the following condition block. We could call this initialization code, as it structures the app when it first loads.
+
+if (!localStorage.getItem("name")) {
+  setUserName();
+} else {
+  const storedName = localStorage.getItem("name");
+  myHeading.textContent = `Mozilla is cool, ${storedName}`;
+}
+
+This first line of this block uses the negation operator (logical NOT, represented by the !) to check whether the name data exists. If not, the setUserName() function runs to create it. If it exists (that is, the user set a user name during a previous visit), we retrieve the stored name using getItem() and set the textContent of the heading to a string, plus the user's name, as we did inside setUserName().
+
+Put this onclick event handler (below) on the button. When clicked, setUserName() runs. This allows the user to enter a different name by pressing the button.
+
+myButton.onclick = () => {
+  setUserName();
+};
+
+--- A user name of null? ---
+
+When you run the example and get the dialog box that prompts you to enter your user name, try pressing the Cancel button. You should end up with a title that reads Mozilla is cool, null. This happens because—when you cancel the prompt—the value is set as null. Null is a special value in JavaScript that refers to the absence of a value.
+
+Also, try clicking OK without entering a name. You should end up with a title that reads Mozilla is cool, for fairly obvious reasons.
+
+To avoid these problems, you could check that the user hasn't entered a blank name. Update your setUserName() function to this:
+
+function setUserName() {
+  const myName = prompt("Please enter your name.");
+  if (!myName) {
+    setUserName();
+  } else {
+    localStorage.setItem("name", myName);
+    myHeading.textContent = `Mozilla is cool, ${myName}`;
+  }
+}
+
+In human language, this means: If myName has no value, run setUserName() again from the start. If it does have a value (if the above statement is not true), then store the value in localStorage and set it as the heading's text.
